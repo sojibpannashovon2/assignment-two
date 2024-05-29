@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ProductService } from "./product.service";
+import { ProductZodSchema } from "./product.validator";
 
 const createProduct = async (req: Request, res: Response) => {
   try {
@@ -13,7 +14,10 @@ const createProduct = async (req: Request, res: Response) => {
       variants,
       inventory,
     } = req.body;
-    const result = await ProductService.createProductDatabase({
+
+    //? import zod validatioin data
+
+    const zodValidation = ProductZodSchema.parse({
       id,
       name,
       description,
@@ -23,6 +27,7 @@ const createProduct = async (req: Request, res: Response) => {
       variants,
       inventory,
     });
+    const result = await ProductService.createProductDatabase(zodValidation);
     res.status(200).json({
       success: true,
       message: "New Product is Added Successfully",

@@ -11,10 +11,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductController = void 0;
 const product_service_1 = require("./product.service");
+const product_validator_1 = require("./product.validator");
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id, name, description, price, category, tags, variants, inventory, } = req.body;
-        const result = yield product_service_1.ProductService.createProductDatabase({
+        //? import zod validatioin data
+        const zodValidation = product_validator_1.ProductZodSchema.parse({
             id,
             name,
             description,
@@ -24,6 +26,7 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             variants,
             inventory,
         });
+        const result = yield product_service_1.ProductService.createProductDatabase(zodValidation);
         res.status(200).json({
             success: true,
             message: "New Product is Added Successfully",
