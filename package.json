@@ -1,0 +1,35 @@
+{
+  "name": "assignment-two",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:prod": "nodemon ./dist/server.js",
+    "format": "prettier --ignore-path .gitignore --write \"./src/**/*.+(js|ts|json)\"",
+    "serve:dev": "ts-node-dev --respawn --transpile-only ./src/",
+    "lint:error": "npx eslint .",
+    "lint": "eslint src --ignore-path .eslintignore --ext .ts",
+    "lint:fix": "npx eslint . --fix",
+    "build": "tsc",
+    "prettier:fix": "npx prettier --write src",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "ts-node-dev --respawn --transpile-only ./dist/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}
