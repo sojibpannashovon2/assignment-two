@@ -5,10 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+const product_route_1 = require("./app/modules/products/product.route");
 const app = (0, express_1.default)();
 // parser
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
+//? Aplication Router
+app.use("/api/v1/products", product_route_1.ProductRoute);
 //Chech server connection
 app.get("/", (req, res) => {
     console.log(`Project two is connect succesfully !!`);
