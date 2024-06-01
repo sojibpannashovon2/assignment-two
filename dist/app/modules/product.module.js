@@ -13,7 +13,7 @@ const InventorySchema = new mongoose_1.Schema({
 });
 // Define the main Product schema
 const productSchema = new mongoose_1.Schema({
-    id: { type: String, required: true, unique: true },
+    // id: { type: String, required: true, unique: true },
     name: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },

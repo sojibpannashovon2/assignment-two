@@ -9,6 +9,13 @@ const createProductDatabase = async (productData: TProduct) => {
   return result;
 };
 
+//?2. Retrieve a List of All Products
+const retrieveAllProducts = async () => {
+  const result = await Product.find({});
+  return result;
+};
+
 export const ProductService = {
   createProductDatabase,
+  retrieveAllProducts,
 };

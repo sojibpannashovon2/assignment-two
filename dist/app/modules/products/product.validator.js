@@ -14,7 +14,7 @@ const InventorySchema = zod_1.z.object({
 });
 // Define Zod schema for Product
 const ProductZodSchema = zod_1.z.object({
-    id: zod_1.z.string().max(20, "Maximum 20 charater required"), // Assuming id should be a UUID
+    // id: z.string().max(20, "Maximum 20 charater required"), // Assuming id should be a UUID
     name: zod_1.z.string().max(20, "Maximum 20 charater required"),
     description: zod_1.z.string(),
     price: zod_1.z.number().positive(`Negative value is not considerable`),

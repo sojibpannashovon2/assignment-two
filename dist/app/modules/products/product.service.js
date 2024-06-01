@@ -19,6 +19,12 @@ const createProductDatabase = (productData) => __awaiter(void 0, void 0, void 0,
     const result = yield product_module_1.default.create(productData);
     return result;
 });
+//?2. Retrieve a List of All Products
+const retrieveAllProducts = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield product_module_1.default.find({});
+    return result;
+});
 exports.ProductService = {
     createProductDatabase,
+    retrieveAllProducts,
 };

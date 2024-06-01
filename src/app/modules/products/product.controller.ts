@@ -4,21 +4,12 @@ import { ProductZodSchema } from "./product.validator";
 
 const createProduct = async (req: Request, res: Response) => {
   try {
-    const {
-      id,
-      name,
-      description,
-      price,
-      category,
-      tags,
-      variants,
-      inventory,
-    } = req.body;
+    const { name, description, price, category, tags, variants, inventory } =
+      req.body;
 
     //? import zod validatioin data
 
     const zodValidation = ProductZodSchema.parse({
-      id,
       name,
       description,
       price,
@@ -42,6 +33,27 @@ const createProduct = async (req: Request, res: Response) => {
   }
 };
 
+//? Get all Data from database
+
+const getAllProducts = async (req: Request, res: Response) => {
+  try {
+    const result = await ProductService.retrieveAllProducts();
+
+    res.status(200).json({
+      success: true,
+      message: `All data retrive successfully`,
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message || "Something went wrong !!",
+      err: error,
+    });
+  }
+};
+
 export const ProductController = {
   createProduct,
+  getAllProducts,
 };

@@ -11,7 +11,7 @@ export interface TInventory {
 }
 
 export interface TProduct {
-  id: string;
+  // id: string;
   name: string;
   description: string;
   price: number;
