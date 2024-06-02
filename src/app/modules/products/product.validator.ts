@@ -14,7 +14,7 @@ const InventorySchema = z.object({
 
 // Define Zod schema for Product
 const ProductZodSchema = z.object({
-  // id: z.string().max(20, "Maximum 20 charater required"), // Assuming id should be a UUID
+  id: z.string().max(20, "Maximum 20 charater required"), // Assuming id should be a UUID
   name: z.string().max(20, "Maximum 20 charater required"),
   description: z.string(),
 

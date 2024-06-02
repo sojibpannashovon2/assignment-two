@@ -14,9 +14,10 @@ const product_service_1 = require("./product.service");
 const product_validator_1 = require("./product.validator");
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { name, description, price, category, tags, variants, inventory } = req.body;
+        const { id, name, description, price, category, tags, variants, inventory, } = req.body;
         //? import zod validatioin data
         const zodValidation = product_validator_1.ProductZodSchema.parse({
+            id,
             name,
             description,
             price,
@@ -58,7 +59,27 @@ const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
 });
+//? Get all Data from database
+const getSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const result = yield product_service_1.ProductService.retrieveSingleProduct(id);
+        res.status(200).json({
+            success: true,
+            message: `Retrive a single product successfully`,
+            data: result,
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message || "Something went wrong !!",
+            err: error,
+        });
+    }
+});
 exports.ProductController = {
     createProduct,
     getAllProducts,
+    getSingleProduct,
 };

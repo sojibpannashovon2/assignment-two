@@ -21,10 +21,16 @@ const createProductDatabase = (productData) => __awaiter(void 0, void 0, void 0,
 });
 //?2. Retrieve a List of All Products
 const retrieveAllProducts = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield product_module_1.default.find({});
+    const result = yield product_module_1.default.find({}).select({});
+    return result;
+});
+//?2. Retrieve a Single Product
+const retrieveSingleProduct = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield product_module_1.default.findOne({ id });
     return result;
 });
 exports.ProductService = {
     createProductDatabase,
     retrieveAllProducts,
+    retrieveSingleProduct,
 };
