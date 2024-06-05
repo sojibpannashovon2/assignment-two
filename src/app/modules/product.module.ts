@@ -46,8 +46,10 @@ productSchema.pre("find", function (next) {
   });
   next();
 });
-productSchema.post("find", function (next) {
-  this.find({}).select({
+
+//For getting single data
+productSchema.pre("findOne", function (next) {
+  this.findOne({}).select({
     id: 0,
     _id: 0,
     // name: 1,

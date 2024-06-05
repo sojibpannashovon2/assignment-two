@@ -59,14 +59,52 @@ const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
 });
-//? Get all Data from database
+//? Get Single Data from database
 const getSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id } = req.params;
-        const result = yield product_service_1.ProductService.retrieveSingleProduct(id);
+        const { productId } = req.params;
+        const result = yield product_service_1.ProductService.retrieveSingleProduct(productId);
         res.status(200).json({
             success: true,
             message: `Retrive a single product successfully`,
+            data: result,
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message || "Something went wrong !!",
+            err: error,
+        });
+    }
+});
+//?Update a Data from database
+const updateSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { productId } = req.params;
+        const result = yield product_service_1.ProductService.retrieveSingleProduct(productId);
+        res.status(200).json({
+            success: true,
+            message: `Retrive a single product successfully`,
+            data: result,
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message || "Something went wrong !!",
+            err: error,
+        });
+    }
+});
+//? Delete a Data from database
+const delteSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { productId } = req.params;
+        const result = yield product_service_1.ProductService.deleteSingleProduct(productId);
+        res.status(200).json({
+            success: true,
+            message: `Delete a single product successfully`,
             data: result,
         });
     }
@@ -82,4 +120,5 @@ exports.ProductController = {
     createProduct,
     getAllProducts,
     getSingleProduct,
+    delteSingleProduct,
 };

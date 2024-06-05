@@ -29,8 +29,20 @@ const retrieveSingleProduct = (id) => __awaiter(void 0, void 0, void 0, function
     const result = yield product_module_1.default.findOne({ id });
     return result;
 });
+//?Upadate a single data
+const updateSingleProduct = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield product_module_1.default.updateOne({ id });
+    return result;
+});
+//?Delete a single data
+const deleteSingleProduct = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield product_module_1.default.deleteOne({ id });
+    return result;
+});
 exports.ProductService = {
     createProductDatabase,
     retrieveAllProducts,
     retrieveSingleProduct,
+    updateSingleProduct,
+    deleteSingleProduct,
 };

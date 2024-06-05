@@ -61,12 +61,12 @@ const getAllProducts = async (req: Request, res: Response) => {
     });
   }
 };
-//? Get all Data from database
+//? Get Single Data from database
 
 const getSingleProduct = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    const result = await ProductService.retrieveSingleProduct(id);
+    const { productId } = req.params;
+    const result = await ProductService.retrieveSingleProduct(productId);
 
     res.status(200).json({
       success: true,
@@ -82,8 +82,50 @@ const getSingleProduct = async (req: Request, res: Response) => {
   }
 };
 
+//?Update a Data from database
+
+const updateSingleProduct = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+    const result = await ProductService.retrieveSingleProduct(productId);
+
+    res.status(200).json({
+      success: true,
+      message: `Retrive a single product successfully`,
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message || "Something went wrong !!",
+      err: error,
+    });
+  }
+};
+//? Delete a Data from database
+
+const delteSingleProduct = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+    const result = await ProductService.deleteSingleProduct(productId);
+
+    res.status(200).json({
+      success: true,
+      message: `Delete a single product successfully`,
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message || "Something went wrong !!",
+      err: error,
+    });
+  }
+};
+
 export const ProductController = {
   createProduct,
   getAllProducts,
   getSingleProduct,
+  delteSingleProduct,
 };
